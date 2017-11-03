@@ -23,17 +23,6 @@
         {{> Select_Form_Control label="Interests" options=interests errorMessage=(fieldError "interests") multiple=true }}
       </div>
 
-      <div class="fields">
-
-        {{> Social_Network_Form_Control label="Github" icon="github" placeholder="pmjohnson" value=profile.github errorMessage=(fieldError "github")}}
-        {{> Social_Network_Form_Control label="Facebook" icon="facebook" placeholder="pmjohnson" value=profile.facebook errorMessage=(fieldError "facebook")}}
-        {{> Social_Network_Form_Control label="Instagram" icon="instagram" placeholder="pmjohnson" value=profile.instagram errorMessage=(fieldError "instagram")}}
-
-      </div>
-
-      {{> TextArea_Form_Control label="Bio" value=profile.bio placeholder="Short bio statement here" errorMessage=(fieldError "bio")}}
-
-
       <button class="ui primary button" type="submit">Submit</button>
       {{#if displaySuccessMessage}}
         <div class="ui success message">

@@ -1,0 +1,64 @@
+<template name="Recipe_Directory_Page">
+  {{#if Template.subscriptionsReady}}
+    <div style="margin-top: 10px" class="ui container">
+      <div class="ui link cards">
+        <div class="card">
+          <div class="image">
+            <img src="/images/strawberry-pie.jpg">
+          </div>
+          <div class="content">
+            <i class="right floated star icon"></i>
+            <div class="header">Strawberry Pie</div>
+            <a style="margin-bottom: 2px" class="ui orange tag small label">Dessert</a>
+            <div class="description">
+              Strawberry pie with whipped cream.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="image">
+            <img src="/images/pizza.jpg">
+          </div>
+          <div class="content">
+            <i class="right floated star icon"></i>
+            <div class="header">Pepperoni Pizza</div>
+            <a style="margin-bottom: 2px" class="ui orange tag small label">Dinner</a>
+            <div class="description">
+              Pepperoni pizza using a toaster oven and canned dough.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="image">
+            <img src="/images/omelette.jpg">
+          </div>
+          <div class="content">
+            <i class="right floated star icon"></i>
+            <div class="header">Vegetable Omelette</div>
+            <a style="margin-bottom: 2px" class="ui orange tag small label">Breakfast</a>
+            <div class="description">
+              Vegetable omelette with ingredients from the farmers market.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="image">
+            <img src="/images/brownies.jpg">
+          </div>
+          <div class="content">
+            <i class="right floated star icon"></i>
+            <div class="header">Mug Brownies</div>
+            <a style="margin-bottom: 2px" class="ui orange tag small label">Dessert</a>
+            <div class="description">
+              Brownies made with a microwave.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  {{/if}}
+</template>

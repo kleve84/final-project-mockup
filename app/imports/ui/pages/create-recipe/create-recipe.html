@@ -1,0 +1,69 @@
+<template name="Create_Recipe_Page">
+
+  {{#if Template.subscriptionsReady}}
+
+    <div class="ui text container segment">
+      <div class="ui dividing header">
+        Create Recipe
+      </div>
+      <form class="ui equal width form profile-data-form {{ successClass }} {{errorClass}}">
+        <div class="field">
+          <label>Recipe Name</label>
+          <input type="text" placeholder="Spicy BBQ Chicken" name="recipe">
+        </div>
+
+        <div class="field">
+          <label>Description</label>
+          <input type="text" placeholder="Insert short description" name="description">
+        </div>
+
+        <div class="field">
+          <label>Ingredients</label>
+          <textarea placeholder="Example:
+          5lbs Frozen Chicken"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Instructions</label>
+          <textarea rows="2"></textarea>
+        </div>
+
+        <div class="inline field">
+          <label>Picture</label>
+          <button class="ui labeled mini icon button">
+            <i class="photo icon"></i>
+            Browse
+          </button>
+        </div>
+
+        <div class="field">
+          <label>Food Tags</label>
+          <select multiple="" class="ui dropdown">
+            <option value="">Select Tag(s)</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="bacon">Bacon</option>
+            <option value="dessert">Desert</option>
+            <option value="foodgasm">Foodgasm</option>
+            <option value="vegan">Vegan</option>
+          </select>
+        </div>
+
+        <button class="ui primary button" type="submit">Submit</button>
+        {{#if displaySuccessMessage}}
+          <div class="ui success message">
+            <p>Profile data successfully updated.</p>
+          </div>
+        {{/if}}
+      </form>
+    </div>
+
+  {{/if}}
+
+  <script>
+    $('.ui.dropdown')
+        .dropdown();
+  </script>
+</template>
+

@@ -1,6 +1,7 @@
 import SimpleSchema from 'simpl-schema';
 import BaseCollection from '/imports/api/base/BaseCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
+import { Favorites } from '/imports/api/favorites/FavoritesCollection';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
@@ -26,6 +27,8 @@ class ProfileCollection extends BaseCollection {
       bio: { type: String, optional: true },
       interests: { type: Array, optional: true },
       'interests.$': { type: String },
+      favorites: { type: Array, optional: true },
+      'favorites.$': { type: String },
       title: { type: String, optional: true },
       picture: { type: SimpleSchema.RegEx.Url, optional: true },
       github: { type: SimpleSchema.RegEx.Url, optional: true },
@@ -42,6 +45,7 @@ class ProfileCollection extends BaseCollection {
    *                   username: 'johnson',
    *                   bio: 'I have been a professor of computer science at UH since 1990.',
    *                   interests: ['Application Development', 'Software Engineering', 'Databases'],
+   *                   favorites: ['Bacon', 'BACON'],
    *                   title: 'Professor of Information and Computer Sciences',
    *                   picture: 'http://philipmjohnson.org/headshot.jpg',
    *                   github: 'https://github.com/philipmjohnson',
@@ -55,11 +59,15 @@ class ProfileCollection extends BaseCollection {
    * if one or more interests are not defined, or if github, facebook, and instagram are not URLs.
    * @returns The newly created docID.
    */
-  define({ firstName = '', lastName = '', username, bio = '', interests = [], picture = '', title = '', github = '',
-      facebook = '', instagram = '' }) {
+  define({
+           firstName = '', lastName = '', username, bio = '', interests = [], favorites = [], picture = '', title = '',
+           github = '', facebook = '', instagram = '',
+         }) {
     // make sure required fields are OK.
-    const checkPattern = { firstName: String, lastName: String, username: String, bio: String, picture: String,
-      title: String };
+    const checkPattern = {
+      firstName: String, lastName: String, username: String, bio: String, picture: String,
+      title: String,
+    };
     check({ firstName, lastName, username, bio, picture, title }, checkPattern);
 
     if (this.find({ username }).count() > 0) {
@@ -68,14 +76,17 @@ class ProfileCollection extends BaseCollection {
 
     // Throw an error if any of the passed Interest names are not defined.
     Interests.assertNames(interests);
+    Favorites.assertNames(favorites);
 
     // Throw an error if there are duplicates in the passed interest names.
     if (interests.length !== _.uniq(interests).length) {
       throw new Meteor.Error(`${interests} contains duplicates`);
     }
 
-    return this._collection.insert({ firstName, lastName, username, bio, interests, picture, title, github,
-      facebook, instagram });
+    return this._collection.insert({
+      firstName, lastName, username, bio, interests, favorites, picture, title, github,
+      facebook, instagram,
+    });
   }
 
   /**
@@ -90,12 +101,13 @@ class ProfileCollection extends BaseCollection {
     const username = doc.username;
     const bio = doc.bio;
     const interests = doc.interests;
+    const favorites = doc.favorites;
     const picture = doc.picture;
     const title = doc.title;
     const github = doc.github;
     const facebook = doc.facebook;
     const instagram = doc.instagram;
-    return { firstName, lastName, username, bio, interests, picture, title, github, facebook, instagram };
+    return { firstName, lastName, username, bio, interests, favorites, picture, title, github, facebook, instagram };
   }
 }
 

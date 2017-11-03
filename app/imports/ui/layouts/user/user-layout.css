@@ -2,3 +2,6 @@
   padding-top: 75px;
 }
 
+.ui.top.fixed.borderless.inverted.user.menu {
+  background-color: #024731;
+}
